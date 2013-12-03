@@ -43,8 +43,8 @@ for files in os.listdir(sys.argv[1]):
         temp = cv2.imread(sys.argv[1]+files,0)
         cols = temp.shape[0]
         rows = temp.shape[1]        
-        im = np.ones((2*rows,2*cols),dtype = np.float32)
-        im[rows/2:1.5*rows,cols/2:1.5*cols] = np.transpose(temp)/255.0        
+        im = np.ones((rows+200,cols+200),dtype = np.float32)
+        im[100:rows+100,100:cols+100] = np.transpose(temp)/255.0        
 
         if not manual:
             im = pv.Image(im)
@@ -75,8 +75,6 @@ for files in os.listdir(sys.argv[1]):
                    im = pv.Image(im.asPIL())
                    break
         
-        print left_eye
-        print right_eye    
         affine = pv.AffineFromPoints(left_eye, right_eye, pv.Point(125,220), pv.Point(275,220), (400,500))
         tile = affine(im)
         name = files[0:-3]+"png"
