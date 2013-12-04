@@ -75,7 +75,7 @@ for files in os.listdir(sys.argv[1]):
                    im = pv.Image(im.asPIL())
                    break
         
-        affine = pv.AffineFromPoints(left_eye, right_eye, pv.Point(125,220), pv.Point(275,220), (400,500))
+        affine = pv.AffineFromPoints(left_eye, right_eye, pv.Point(62.5,115), pv.Point(137.5,115), (200,250))
         tile = affine(im)
         name = files[0:-3]+"png"
         tile.save(destiny+name)
